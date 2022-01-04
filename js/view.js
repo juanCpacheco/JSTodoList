@@ -1,10 +1,14 @@
+import AddTodo from "./components/add-todo.js";
+
 export default class View {
   constructor() {
     this.model = null;
     this.table = document.getElementById("table");
-    const btn = document.getElementById("add");
-    btn.onclick = () =>
-      this.addTodo("Titulo numero uno", "Descripcion del titulo numero 1");
+    this.addTodoForm = new AddTodo();
+
+    this.addTodoForm.onClick((title, description) =>
+      this.addTodo(title, description)
+    );
   }
 
   setModel(model) {
@@ -12,6 +16,6 @@ export default class View {
   }
 
   addTodo(title, description) {
-    this.model.addTodo(title, description);
-}
+    const todo = this.model.addTodo(title, description);
+  }
 }
